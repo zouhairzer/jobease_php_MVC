@@ -3,7 +3,6 @@
 
 namespace App\Models;
 session_start();
-session_destroy();
 class UserModel
 {
     private $db;
@@ -81,10 +80,10 @@ class UserModel
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['role'] = $role;
 
-                print_r($_SESSION);
+                // print_r($_SESSION);
 
                 if ($role === 'candidat') {
-                    header ('location:?route=home');
+                    header ('location:?route=indexCandidat');
                 } 
                 elseif($role === 'admin') {
                     header ('location:?route=dashboard');
@@ -93,30 +92,13 @@ class UserModel
         }
     }}
 
-    // public function approuve()
-    // {
-    //     if(isset($_GET['job_id'])){
-    //         $job_id = $_GET['job_id'];
-    //         $userid = $_GET['user_id'];;
-    //         $check = "SELECT * FROM notifications WHERE job_id = $job_id AND user_id =  $userid";
-    //         $resultcheck = mysqli_query($con, $check);
-    //         if($rows = mysqli_fetch_assoc($resultcheck) ==  0){
-    //             $sql = "INSERT INTO `status` (`offreid`, `useerid`) VALUES('$userid','$offreid')";
-    //             $query = mysqli_query($con,$sql);
-    //         }
-    //         else{
-    //             echo "Vous avez deja envoyer cette demande";
-    //             }
-    //     }
-    //     if(isset($_GET['msg'])){
-    
-    //         if($_GET['msg'] == 1 ){
-    //         echo "Accepter";
-    //         }
-    //         else{
-    //             echo "Refuser";
-    //         }}
-    // }
+
+    public function postuler(){
+        if (isset($_SESSION['role'])) {
+            header ('location:?route=');
+        } 
+    }
+
 
     public function addjob()
     {
@@ -172,21 +154,13 @@ class UserModel
             $jobs = [];
             $rows = mysqli_fetch_assoc($result);
             $jobs = $rows;
-            // print_r($jobs);
-            // $title = $jobs['title'];
-            // $description = $jobs['description'];
-            // $location = $jobs['location'];
-            // $image = $jobs['image_path'];
             return $jobs;
         }
 
         if(isset($_POST['submit'])){ 
-            // dump($_POST);
-            // print_r($_POST);
             $title = $_POST['title'];
             $description = $_POST['description'];
             $location = $_POST['location'];
-            // $image = $_POST['image_path'];
             $jobId = $_POST['jobid'];
             
             $quer = "UPDATE `jobs` SET `title`='$title',`description`='$description',`location`='$location' WHERE job_id = '$jobId' ";
@@ -200,22 +174,6 @@ class UserModel
         }
 
     }
-
-    // public function approveJob($jobId) {
-    //     $sql = "UPDATE jobs SET status='approved' WHERE id=?";
-    //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bind_param("i", $jobId);
-    //     $stmt->execute();
-    //     $stmt->close();
-    // }
-
-    // public function disapproveJob($jobId) {
-    //     $sql = "UPDATE jobs SET status='disapproved' WHERE id=?";
-    //     $stmt = $this->db->prepare($sql);
-    //     $stmt->bind_param("i", $jobId);
-    //     $stmt->execute();
-    //     $stmt->close();
-    // }
 
     public function getUser()
     {

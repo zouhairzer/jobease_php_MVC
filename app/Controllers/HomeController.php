@@ -18,19 +18,7 @@ class HomeController
       
 
     }
-    // public function fetchMoreUsers()
-    // {
-       
-    //     $moreUsers = [
-    //         ['jobs' => 'test user A', 'email' => 'user1@example.com'],
-    //         ['username' => 'test user B', 'email' => 'user2@example.com'],
-    //     ];
 
-    //     // Return the data as JSON
-    //     header('Content-Type: application/json');
-    //     echo json_encode(['jobs' => $moreUsers]);
-    //     exit;
-    // }
     
     public function dashboard()
     { 
@@ -45,16 +33,13 @@ class HomeController
         require(__DIR__ .'../../../view/articles.php');
     }
 
-    // public function addJ()
-    // { 
-    //     require(__DIR__ .'../../../view/addJob.php');
-    // }
-
-    // public function updateJob()
-    // { 
-    //     require(__DIR__ .'../../../view/addJob.php');
-    // }
-
-
+    public function Candidat()
+    { 
+        $userModel = new UserModel();
+        $jobs = $userModel->getAllJobs();
+        $collections = ['jobs' => $jobs ] ;
+        require(__DIR__ .'../../../view/candidat/indexCandidat.php');
+    }
+    
 }
 ?>

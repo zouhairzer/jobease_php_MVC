@@ -55,6 +55,9 @@ switch ($route) {
     case 'offre':
         $searchJobController = new adminController();
         $searchJobController->offres();
+    case 'indexCandidat':
+        $searchJobController = new HomeController();
+        $searchJobController->candidat();
         break;
     default:
         // Handle 404 or redirect to the default route
