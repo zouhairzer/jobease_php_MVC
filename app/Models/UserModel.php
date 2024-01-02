@@ -92,15 +92,8 @@ class UserModel
         }
     }}
 
-
-    public function postuler(){
-        if (isset($_SESSION['role'])) {
-            header ('location:?route=');
-        } 
-    }
-
-
-    public function addjob()
+    
+     public function addjob()
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             

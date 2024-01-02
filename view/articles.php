@@ -27,7 +27,7 @@
                         <a href="dashboard.php" class="sidebar_link"> <img src="assets/img/1. overview.svg" alt="icon">Overview</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="candidat.php" class="sidebar_link"> <img src="assets/img/agents.svg" alt="icon">Candidat</a>
+                        <a href="/../candidat/candidat.php" class="sidebar_link"> <img src="assets/img/agents.svg" alt="icon">Candidat</a>
                     </li>
                     <li class="sidebar_item">
                         <a href="?route=offre" class="sidebar_link"> <img src="assets/img/task.svg" alt="icon">Notifications</a>

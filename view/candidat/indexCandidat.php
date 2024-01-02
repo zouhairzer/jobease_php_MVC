@@ -1,5 +1,35 @@
 <!-- view/home.php -->
 
+<?php
+use App\Models\Database;
+
+	$connexion = Database::getInstance();
+	$conn = $connexion->getConnection();
+
+   if (isset($_SESSION["user_id"])){
+	    $user_id = $_SESSION["user_id"];
+   }
+   else{
+	header("Location:?route=login");
+   }
+
+
+	if (isset($_GET["job_id"])){
+		$jobid = $_GET["job_id"];
+
+		$sql = "SELECT * FROM `approve` WHERE id_user = '$user_id' AND id_job = '$jobid'";
+		$result = mysqli_query( $conn, $sql );
+		if(mysqli_num_rows($result)> 0){
+			echo "<script>alert('Demande déjà effectuée');</script>";
+		}
+		else{
+			$insert = "INSERT INTO `approve`(`id_job`, `id_user`) VALUES ('$jobid','$user_id')";
+			$result = mysqli_query( $conn, $insert );
+		}
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
